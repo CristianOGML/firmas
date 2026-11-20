@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- En Odoo 19 las listas usan <list>; el xpath no depende de eso. Verifique el xml_id y los campos reales del form en su versión de 'sign'
+         (modo desarrollador > Editar vista). -->
+    <record id="sign_send_request_view_form_personal_copy" model="ir.ui.view">
+        <field name="name">sign.send.request.form.personal.copy</field>
+        <field name="model">sign.send.request</field>
+        <field name="inherit_id" ref="sign.sign_send_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='signer_ids']//field[@name='partner_id']" position="after">
+                <field name="is_employee" column_invisible="1"/>
+                <field name="cc_personal_email" string="Personal"
+                       invisible="not is_employee"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
